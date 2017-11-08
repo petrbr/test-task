@@ -1,0 +1,25 @@
+.autocomplete
+	display block
+	background white
+	border-top 1px solid #cecece
+	transition 0.3s
+	border 1px solid #6b6b6b
+	box-shadow 0 2px 10px 1px rgba(0,0,0,0.3)
+	border-radius 6px
+	overflow hidden
+	&:empty
+		display none
+	&--error
+		p
+			margin 0
+			padding 43px 20px
+			text-align center
+			font-size 20px
+			font-weight 700
+			color #b5b5b5
+	&__row
+		padding 10px 20px
+		cursor pointer
+		&:hover
+			background #efefef
+			transition .2s

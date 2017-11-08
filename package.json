@@ -1,0 +1,23 @@
+{
+  "name": "tickets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "font-awesome-stylus": "^4.7.1",
+    "gulp": "^3.9.1",
+    "gulp-react-easy": "0.0.6",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-stylus": "^2.6.0",
+    "react": "^15.0.1",
+    "react-datepicker": "^0.60.2",
+    "react-dom": "^15.0.1",
+    "stylus-normalize": "^3.0.3"
+  }
+}

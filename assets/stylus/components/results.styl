@@ -1,0 +1,107 @@
+.results
+	display block
+	background white
+	border-top 1px solid #cecece
+	opacity 0.95
+	transition 0.3s
+	border 1px solid #6b6b6b
+	box-shadow 0 2px 10px 1px rgba(0,0,0,0.3)
+	border-radius 6px
+	overflow hidden
+	&:hover
+		opacity 1
+	&:empty
+		display none
+	&--error
+		p
+			margin 0
+			padding 43px 20px
+			text-align center
+			font-size 20px
+			font-weight 700
+			color #b5b5b5
+	&--loading
+		display block
+		text-align center
+		padding 40px
+		span.spinner
+			display inline-block
+			border-radius 50%
+			border 5px solid #eaeaea
+			border-top 5px solid #b5b5b5
+			width 30px
+			height 30px
+			animation-name spin
+			animation-duration 1.2s
+			animation-iteration-count infinite
+			animation-timing-function linear
+	&__row
+		padding 10px 20px
+		border-top 1px solid #cecece
+		&:first-child
+			border-top none
+		&:hover
+			background #f4f4f4
+			transition .2s
+	&__info
+		display flex
+		justify-content space-between
+		align-items center
+	&__price
+		width 90px
+		strong
+			font-size 20px
+			color #000
+			font-weight 700
+	&__stopovers
+		display block
+		font-size 13px
+		color gray
+	&__route
+		width 90px
+		.separator
+			font-size 13px
+			color gray
+	&__flights
+		width calc(100% - 390px)
+		box-sizing border-box
+		padding-left 30px
+		font-size 14px
+		line-height 18px
+	&__flight
+		display block
+	&__date
+		width 160px
+		small
+			display block
+			font-size 13px
+			color gray
+	&__duration
+		display block
+		font-size 13px
+		color gray
+	&__book
+		width 50px
+		button
+			width 50px
+			height 50px
+			border none
+			outline none
+			background #5dade7
+			color white
+			fa(shopping-cart)
+			font-size 20px
+			transition 0.4s
+			&:hover
+				background darken(#5dade7, 10%)
+			&:active
+				background darken(#5dade7, 25%)
+
+@keyframes spin {
+	from {
+		transform:rotate(0deg);
+	}
+	to {
+		transform:rotate(360deg);
+	}
+}
