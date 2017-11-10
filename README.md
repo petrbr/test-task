@@ -1,4 +1,6 @@
-There is also an 'Original' branch that contains the original version from 8. 11.
+Live version - http://clearfix.cz/test_task/
+
+There is also an 'Original' branch that contains the original version from 8. 11. Orignal live version - http://clearfix.cz/test_task_original/
 
 ### TODO:
 - Calendar style
