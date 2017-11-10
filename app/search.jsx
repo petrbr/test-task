@@ -8,8 +8,8 @@ import DatePicker from 'react-datepicker';
 class Search extends React.Component {
 	constructor(){
 		super();
+		this.setAutocomplete = this.setAutocomplete.bind(this);
 		this.handleAutocomplete = this.handleAutocomplete.bind(this);
-		this.handler = this.handler.bind(this);
 		this.handleDateChange = this.handleDateChange.bind(this);
 		this.state = {
 			destFrom: '',
@@ -20,14 +20,13 @@ class Search extends React.Component {
 			autocompleteFor: '',
 			dateFrom: moment().add(1, 'days')
 		};
-
 	}
 
 	componentDidMount() {
 		ReactDOM.findDOMNode(this.refs.inputFrom).focus();
 	}
 
-	handler(event) {
+	handleAutocomplete(event) {
 		switch(event.target.getAttribute('data-for')) {
 			case 'destFrom':
 				this.setState({
@@ -47,7 +46,7 @@ class Search extends React.Component {
 		};
 	}
 
-	handleAutocomplete(event) {
+	setAutocomplete(event) {
 		switch(event.target.name) {
 			case 'destFrom':
 				this.setState({
@@ -75,7 +74,7 @@ class Search extends React.Component {
 		});
 	}
 
-	handleFocus(event) {
+	handleInputFocus(event) {
 		event.target.select();
 	}
 
@@ -88,8 +87,8 @@ class Search extends React.Component {
 							ref="inputFrom"
 							value={this.state.destFrom}
 							type="text"
-							onChange={this.handleAutocomplete}
-							onFocus={this.handleFocus}
+							onChange={this.setAutocomplete}
+							onFocus={this.handleInputFocus}
 							name="destFrom"
 							placeholder="From"
 						/>
@@ -99,8 +98,8 @@ class Search extends React.Component {
 							ref="inputTo"
 							value={this.state.destTo}
 							type="text"
-							onChange={this.handleAutocomplete}
-							onFocus={this.handleFocus}
+							onChange={this.setAutocomplete}
+							onFocus={this.handleInputFocus}
 							name="destTo"
 							placeholder="To"
 						/>
@@ -114,7 +113,7 @@ class Search extends React.Component {
 						/>
 					</div>
 				</div>
-				<Autocomplete query={this.state.autocompleteQuery} for={this.state.autocompleteFor} handler={this.handler} />
+				<Autocomplete query={this.state.autocompleteQuery} for={this.state.autocompleteFor} handler={this.handleAutocomplete} />
 				<Results destFromId={this.state.destFromId} destToId={this.state.destToId} dateFrom={this.state.dateFrom.format('DD/MM/YYYY')} />
 			</div>
 		);

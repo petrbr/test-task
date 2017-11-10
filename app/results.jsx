@@ -8,7 +8,6 @@ class Results extends React.Component {
 		this.state = {
 			results: []
 		};
-
 	}
 
 	componentWillReceiveProps(props) {

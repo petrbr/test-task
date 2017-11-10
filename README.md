@@ -1,3 +1,5 @@
+There is also an 'Original' branch that contains the original version from 8. 11.
+
 ### TODO:
 - Keyboard autocomplete (now you have to select your destination by mouse)
 - Calendar style
