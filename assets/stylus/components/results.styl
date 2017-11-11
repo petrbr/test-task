@@ -1,15 +1,7 @@
 .results
 	display block
-	background white
-	border-top 1px solid #cecece
-	opacity 0.95
 	transition 0.3s
-	border 1px solid #6b6b6b
-	box-shadow 0 2px 10px 1px rgba(0,0,0,0.3)
-	border-radius 6px
-	overflow hidden
-	&:hover
-		opacity 1
+	margin-top 10px
 	&:empty
 		display none
 	&--error
@@ -41,7 +33,7 @@
 		&:first-child
 			border-top none
 		&:hover
-			background #f4f4f4
+			background #f8f8f8
 			transition .2s
 	&__info
 		display flex
@@ -87,15 +79,15 @@
 			height 50px
 			border none
 			outline none
-			background #5dade7
+			background $orange
 			color white
 			fa(shopping-cart)
 			font-size 20px
 			transition 0.4s
 			&:hover
-				background darken(#5dade7, 10%)
+				background lighten($orange, 15%)
 			&:active
-				background darken(#5dade7, 25%)
+				background darken($orange, 25%)
 
 @keyframes spin {
 	from {

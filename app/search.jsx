@@ -6,12 +6,14 @@ import moment from 'moment';
 import DatePicker from 'react-datepicker';
 
 class Search extends React.Component {
-	constructor(){
-		super();
+	constructor(props){
+		super(props);
 		this.setAutocomplete = this.setAutocomplete.bind(this);
 		this.handleAutocomplete = this.handleAutocomplete.bind(this);
 		this.handleDateChange = this.handleDateChange.bind(this);
+		this.handleInputFocus = this.handleInputFocus.bind(this);
 		this.state = {
+			setAppFocused: this.props.setFocused,
 			destFrom: '',
 			destTo: '',
 			destFromId: '',
@@ -23,7 +25,7 @@ class Search extends React.Component {
 	}
 
 	componentDidMount() {
-		ReactDOM.findDOMNode(this.refs.inputFrom).focus();
+		ReactDOM.findDOMNode(this.refs.inputDestFrom).focus();
 	}
 
 	handleAutocomplete(event) {
@@ -34,7 +36,7 @@ class Search extends React.Component {
 					destFromId: event.target.getAttribute('data-id'),
 					autocompleteQuery: ''
 				});
-				ReactDOM.findDOMNode(this.refs.inputTo).focus();
+				ReactDOM.findDOMNode(this.refs.inputDestTo).focus();
 				break;
 			case 'destTo':
 				this.setState({
@@ -47,6 +49,7 @@ class Search extends React.Component {
 	}
 
 	setAutocomplete(event) {
+		this.state.setAppFocused(true);
 		switch(event.target.name) {
 			case 'destFrom':
 				this.setState({
@@ -82,35 +85,43 @@ class Search extends React.Component {
 		return (
 			<div>
 				<div className="search">
-					<div className="search__input search__input--dest-from">
-						<input
-							ref="inputFrom"
-							value={this.state.destFrom}
-							type="text"
-							onChange={this.setAutocomplete}
-							onFocus={this.handleInputFocus}
-							name="destFrom"
-							placeholder="From"
-						/>
+					<div className="search__col">
+						<label className="search__label search__label--dest-from" htmlFor="dest-for-input">
+							<input
+								ref="inputDestFrom"
+								value={this.state.destFrom}
+								type="text"
+								onChange={this.setAutocomplete}
+								onFocus={this.handleInputFocus}
+								name="destFrom"
+								placeholder="From"
+								id="dest-for-input"
+							/>
+						</label>
 					</div>
-					<div className="search__input search__input--dest-to">
-						<input
-							ref="inputTo"
-							value={this.state.destTo}
-							type="text"
-							onChange={this.setAutocomplete}
-							onFocus={this.handleInputFocus}
-							name="destTo"
-							placeholder="To"
-						/>
+					<div className="search__col">
+						<label className="search__label search__label--dest-to" htmlFor="dest-to-input">
+							<input
+								ref="inputDestTo"
+								value={this.state.destTo}
+								type="text"
+								onChange={this.setAutocomplete}
+								onFocus={this.handleInputFocus}
+								name="destTo"
+								placeholder="To"
+								id="dest-to-input"
+							/>
+						</label>
 					</div>
-					<div className="search__input search__input--date-from">
-						<DatePicker
-							ref="inputDateFrom"
-							selected={this.state.dateFrom}
-							onChange={this.handleDateChange}
-							id='date-picker'
-						/>
+					<div className="search__col">
+						<label className="search__label search__label--date-from" htmlFor="date-picker">
+							<DatePicker
+								ref="inputDateFrom"
+								selected={this.state.dateFrom}
+								onChange={this.handleDateChange}
+								id="date-picker"
+							/>
+						</label>
 					</div>
 				</div>
 				<Autocomplete query={this.state.autocompleteQuery} for={this.state.autocompleteFor} handler={this.handleAutocomplete} />
