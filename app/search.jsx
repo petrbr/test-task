@@ -4,10 +4,12 @@ import Autocomplete from './autocomplete';
 import Results from './results';
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
+import classNames from 'classnames';
 
 class Search extends React.Component {
 	constructor(props){
 		super(props);
+		this.componentDidMount = this.componentDidMount.bind(this);
 		this.setAutocomplete = this.setAutocomplete.bind(this);
 		this.handleAutocomplete = this.handleAutocomplete.bind(this);
 		this.handleDateChange = this.handleDateChange.bind(this);
@@ -20,12 +22,17 @@ class Search extends React.Component {
 			destToId: '',
 			autocompleteQuery: '',
 			autocompleteFor: '',
-			dateFrom: moment().add(1, 'days')
+			dateFrom: moment().add(1, 'days'),
+			destFromFocused: false,
+			destToFocused: false
 		};
 	}
 
 	componentDidMount() {
 		ReactDOM.findDOMNode(this.refs.inputDestFrom).focus();
+		this.setState({
+			destFromFocused: true
+		});
 	}
 
 	handleAutocomplete(event) {
@@ -37,6 +44,9 @@ class Search extends React.Component {
 					autocompleteQuery: ''
 				});
 				ReactDOM.findDOMNode(this.refs.inputDestTo).focus();
+				this.setState({
+					destToFocused: true
+				});
 				break;
 			case 'destTo':
 				this.setState({
@@ -82,11 +92,24 @@ class Search extends React.Component {
 	}
 
 	render() {
+
+		const destFromClasses = classNames({
+			'search__label': true,
+			'search__label--dest-from': true,
+			'search__label--focused': this.state.destFromFocused
+		});
+
+		const destToClasses = classNames({
+			'search__label': true,
+			'search__label--dest-to': true,
+			'search__label--focused': this.state.destToFocused
+		});
+
 		return (
 			<div>
 				<div className="search">
 					<div className="search__col">
-						<label className="search__label search__label--dest-from" htmlFor="dest-for-input">
+						<label className={destFromClasses} htmlFor="dest-for-input">
 							<input
 								ref="inputDestFrom"
 								value={this.state.destFrom}
@@ -100,7 +123,7 @@ class Search extends React.Component {
 						</label>
 					</div>
 					<div className="search__col">
-						<label className="search__label search__label--dest-to" htmlFor="dest-to-input">
+						<label className={destToClasses} htmlFor="dest-to-input">
 							<input
 								ref="inputDestTo"
 								value={this.state.destTo}
